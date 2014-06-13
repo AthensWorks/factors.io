@@ -1,5 +1,7 @@
 GEM
   specs:
+    haml (4.0.3)
+      tilt
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -13,4 +15,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  haml
   sinatra

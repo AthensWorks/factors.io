@@ -2,26 +2,27 @@ class FactorsApp < Sinatra::Base
 
   # Homepage
   get '/' do
-    "Hello Factorized World"
+    haml :index
   end
 
   get '/about' do
-    "Who built this? And why?"
+    haml :about
   end
 
   # Get a random number
   get '/random' do
-    "TODO: GET /random"
+    erb "TODO: GET /random"
   end
 
   # Show a number
   get '/factors/:number' do
-    "TODO: GET /factors/#{params[:number]}"
+    number = params[:number].to_i
+    haml :'factors/get', locals: { number: number}
   end
 
   # Submit a number
   post '/factors/:number' do
-    "TODO: POST /factors/#{params[:number]}"
+    erb "TODO: POST /factors/#{params[:number]}"
   end
 
   # start the server if ruby file executed directly

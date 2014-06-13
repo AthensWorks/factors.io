@@ -1,0 +1,7 @@
+---
+applications:
+- name: Factors.io
+  memory: 128M
+  instances: 1
+  url: bootstrap.${target-base}
+  path: .
