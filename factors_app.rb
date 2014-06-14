@@ -15,7 +15,9 @@ class FactorsApp < Sinatra::Base
 
   # Get a random number
   get '/random' do
-    haml "TODO: GET /random"
+    # http://stackoverflow.com/a/21867984
+    random_number = rand(0..1_000_000_000_000_000_000_000)
+    redirect to("/factors/#{random_number}")
   end
 
   # Show a number
