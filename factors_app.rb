@@ -1,6 +1,9 @@
 class FactorsApp < Sinatra::Base
   set :server, 'thin'
 
+  get '/application.js' do
+    coffee :'application'
+  end
   # Homepage
   get '/' do
     haml :index
