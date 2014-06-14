@@ -15,7 +15,7 @@ class FactorsApp < Sinatra::Base
 
   # Get a random number
   get '/random' do
-    erb "TODO: GET /random"
+    haml "TODO: GET /random"
   end
 
   # Show a number
@@ -26,7 +26,7 @@ class FactorsApp < Sinatra::Base
 
   # Submit a number
   post '/factors/:number' do
-    erb "TODO: POST /factors/#{params[:number]}"
+    haml "TODO: POST /factors/#{params[:number]}"
   end
 
   # start the server if ruby file executed directly
