@@ -1,4 +1,5 @@
 class FactorsApp < Sinatra::Base
+  set :server, 'thin'
 
   # Homepage
   get '/' do
