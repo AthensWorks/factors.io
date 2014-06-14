@@ -6,3 +6,12 @@ gem 'sinatra'
 gem 'haml'
 gem 'coffee-script'
 gem 'therubyracer'
+
+gem 'mongoid'
+
+group :test, :development do
+  gem 'rspec'
+  gem 'factory_girl'
+
+  gem 'rack-test'
+end

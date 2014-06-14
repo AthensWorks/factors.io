@@ -1,3 +1,6 @@
+Mongoid.load!("config/mongoid.yml")
+require './number'
+
 class FactorsApp < Sinatra::Base
   set :server, 'thin'
 
@@ -22,7 +25,8 @@ class FactorsApp < Sinatra::Base
 
   # Show a number
   get '/factors/:number' do
-    number = params[:number].to_i
+    number_value = params[:number].to_i
+    number = Number.where(value: number_value).first || Number.new(value: number_value)
     haml :'factors/get', locals: { number: number}
   end
 
