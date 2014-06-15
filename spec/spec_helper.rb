@@ -12,8 +12,16 @@ require 'factory_girl'
 FactoryGirl.definition_file_paths = %w{./factories ./test/factories ./spec/factories}
 FactoryGirl.find_definitions
 
+
+module AppMixin
+  def app
+    FactorsApp
+  end
+end
+
 RSpec.configure do |config|
   config.include Rack::Test::Methods
+  config.include AppMixin
 
   config.before :all do
     Mongoid.purge!
