@@ -29,6 +29,7 @@ GEM
       tzinfo (~> 0.3.29)
     moped (1.5.2)
     multi_json (1.10.1)
+    newrelic_rpm (3.8.0.218)
     origin (1.1.0)
     rack (1.5.2)
     rack-protection (1.5.3)
@@ -70,6 +71,7 @@ DEPENDENCIES
   factory_girl
   haml
   mongoid
+  newrelic_rpm
   rack-test
   rspec
   sinatra

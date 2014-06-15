@@ -15,3 +15,7 @@ group :test, :development do
 
   gem 'rack-test'
 end
+
+group :production, :development do
+  gem 'newrelic_rpm'
+end
