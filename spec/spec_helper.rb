@@ -15,7 +15,7 @@ FactoryGirl.find_definitions
 
 module AppMixin
   def app
-    FactorsApp
+    FactorsApp.new
   end
 end
 
