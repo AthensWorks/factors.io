@@ -11,6 +11,16 @@ describe Number do
     expect(number.valid?).to be false
   end
 
+  it "should require value to be set" do
+    number = FactoryGirl.build(:number, value: nil)
+    expect(number.valid?).to be false
+  end
+
+  it "should require value an Integer-like string" do
+    number = FactoryGirl.build(:number, value: "123ab45")
+    expect(number.valid?).to be false
+  end
+
   it "should require a known status" do
     number = FactoryGirl.build(:number, status: 'unknown')
     expect(number.valid?).to be false

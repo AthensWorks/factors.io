@@ -25,8 +25,8 @@ class FactorsApp < Sinatra::Base
 
   # Show a number
   get '/factors/:number' do
-    number_value = params[:number].to_i
-    number = Number.where(value: number_value).first || Number.new(value: number_value)
+    val = Number.ensure_integer_as_string(params[:number])
+    number = Number.where(value: val).first || Number.new(value: val)
     haml :'factors/get', locals: { number: number}
   end
 
