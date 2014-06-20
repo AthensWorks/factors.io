@@ -19,3 +19,7 @@ end
 group :production, :development do
   gem 'newrelic_rpm'
 end
+
+group :development do
+  gem 'guard-rspec', require: false
+end
