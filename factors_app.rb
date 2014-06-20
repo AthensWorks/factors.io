@@ -1,4 +1,5 @@
 Mongoid.load!("config/mongoid.yml")
+I18n.config.enforce_available_locales=false
 require './number'
 
 class FactorsApp < Sinatra::Base

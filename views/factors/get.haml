@@ -1,45 +1,30 @@
-%h5
-  Factors for:
+.row
+  .col-lg-12
+    .bs-component
+      .jumbotron
+        %h5
+          Factors for:
+        %h1
+          = number.value
 
-%h1
-  = number.value
-
-
-- if number.has_factors?
-  %table.table.table-striped.table-hover
-    %thead
-      %tr
-        %th #
-        %th Factor
-    %tbody
-      %tr
-        %td 1
-        %td
-          %a{href: '/factors/factor'}Factor
-      %tr
-        %td 2
-        %td
-          %a{href: '/factors/factor'}Factor
-      %tr
-        %td 3
-        %td
-          %a{href: '/factors/factor'}Factor
-      %tr
-        %td 4
-        %td
-          %a{href: '/factors/factor'}Factor
-      %tr
-        %td 5
-        %td
-          %a{href: '/factors/factor'}Factor
-      %tr
-        %td 6
-        %td
-          %a{href: '/factors/factor'}Factor
-      %tr
-        %td 7
-        %td
-          %a{href: '/factors/factor'}Factor
-- else
-  %p
-    We have not factored this number.  Would you like to submit it?
+        - if !number.has_factors?
+          %p
+            I'm sorry, we have not factored this number.
+          %p
+            %a.btn.btn-primary.btn{href: "/random"} Submit it?
+.row
+  .col-lg-12
+    - if number.has_factors?
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th #
+            %th Factor
+        %tbody
+        - number.factors.each_with_index do |number, index|
+          %tr
+            %td
+              = index + 1
+            %td
+              %a{href: "/factors/#{number}"}
+                = number
