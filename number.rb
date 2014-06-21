@@ -8,7 +8,7 @@ class Number
   validates_inclusion_of :status, in: ['complete', 'in_progress', 'queued']
   validates_presence_of  :value
   validates_format_of    :value, with: /^\d+$/
-
+  validates_length_of    :value, maximum: 18
 
   def self.ensure_integer_as_string(value)
     value.to_i.to_s if value.present?

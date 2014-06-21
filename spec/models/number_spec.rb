@@ -33,4 +33,19 @@ describe Number do
     number = FactoryGirl.build(:number, factors: [1, 2])
     expect(number.has_factors?).to be true
   end
+
+  context "can only factor up to 18 digits" do
+    it "should allow values up to 18 digits" do
+      val = '1' * 18 # 18 digit integer
+      number = FactoryGirl.build(:number, value: val)
+      expect(number).to be_valid
+    end
+
+    it "should limit values to no more than 18 digits" do
+      val = '1' * 19 # 19 digit integer
+      number = FactoryGirl.build(:number, value: val)
+      expect(number).to_not be_valid
+    end
+
+  end
 end

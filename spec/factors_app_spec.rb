@@ -23,7 +23,7 @@ describe 'Factor App' do
   end
 
   it "has a /factors show page" do
-    random_number = rand(0..1_000_000_000_000_000_000_000).to_s
+    random_number = rand(0..1_000_000_000_000_000_000).to_s
 
     get "/factors/#{random_number}"
     expect(last_response).to be_ok
@@ -49,7 +49,7 @@ describe 'Factor App' do
 
   pending "has a POST /factors page" do
 
-    random_number = rand(0..1_000_000_000_000_000_000_000).to_s
+    random_number = rand(0..1_000_000_000_000_000_000).to_s
     email = 'test@factors.io'
 
     post "/factors/#{random_number}?email=#{email}"
