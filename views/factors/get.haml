@@ -11,20 +11,9 @@
           %p
             I'm sorry, we have not factored this number.
           %p
-            %a.btn.btn-primary.btn{href: "/random"} Submit it?
+            %a.btn.btn-primary.btn{href: "#", id: "showSubmitForm"} Submit it?
+
 .row
   .col-lg-12
-    - if number.has_factors?
-      %table.table.table-striped.table-hover
-        %thead
-          %tr
-            %th #
-            %th Factor
-        %tbody
-        - number.factors.each_with_index do |number, index|
-          %tr
-            %td
-              = index + 1
-            %td
-              %a{href: "/factors/#{number}"}
-                = number
+    = haml(:'factors/factors', layout: false, locals: {number: number})
+    = haml(:'factors/submit', layout: false, locals: {number: number})
