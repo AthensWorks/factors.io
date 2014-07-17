@@ -26,12 +26,54 @@ describe Number do
     expect(number.valid?).to be false
   end
 
-  it "#has_factors?" do
-    number = FactoryGirl.build(:number, factors: [])
-    expect(number.has_factors?).to be false
+  it "should require a status" do
+    number = FactoryGirl.build(:number, status: nil)
+    expect(number.valid?).to be false
+  end
 
-    number = FactoryGirl.build(:number, factors: [1, 2])
-    expect(number.has_factors?).to be true
+  it "should allow on specific statuses" do
+    number = FactoryGirl.build(:number)
+
+    number.status = 'complete'
+    expect(number.valid?).to be true
+
+    number.status = 'in-progress'
+    expect(number.valid?).to be true
+
+    number.status = 'queued'
+    expect(number.valid?).to be true
+
+    number.status = 'incomplete'
+    expect(number.valid?).to be true
+  end
+
+  it "should have hash-like facotrs" do
+    number = FactoryGirl.build(:number, factors: {})
+    expect(number.factors?).to be false
+    expect(number.factors.keys).to eq []
+
+    number = FactoryGirl.build(:number, factors: {'2' => '3', '5' => '4'})
+    expect(number.factors?).to be true
+    expect(number.factors['2']).to eq '3'
+    expect(number.factors['5']).to eq '4'
+  end
+
+  it "should have an array of divisors" do
+    number = FactoryGirl.build(:number, divisors: [])
+    expect(number.divisors?).to be false
+    expect(number.divisors).to eq []
+
+    number = FactoryGirl.build(:number, divisors: ['1', '2', '4', '5', '10', '20'])
+    expect(number.divisors?).to be true
+    expect(number.divisors.size).to eq 6
+  end
+
+  it "should know about primality" do
+    number = FactoryGirl.build(:number, value: '5', prime: true)
+    expect(number.prime?).to be true
+
+    number = FactoryGirl.build(:number, value: '20', prime: false)
+    expect(number.prime?).to be false
   end
 
   context "can only factor up to 18 digits" do
