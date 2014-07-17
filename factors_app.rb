@@ -8,6 +8,7 @@ class FactorsApp < Sinatra::Base
   get '/application.js' do
     coffee :'application'
   end
+
   # Homepage
   get '/' do
     haml :index
@@ -24,12 +25,20 @@ class FactorsApp < Sinatra::Base
     redirect to("/factors/#{random_number}")
   end
 
+  get '/random-prime' do
+    all_primes_ids = Number.where(prime: true).pluck(:_id)
+    random_id = all_primes_ids.sample
+
+    redirect to("/factors/#{Number.find(random_id).value}")
+  end
+
   # Show a number
   get '/factors/:number' do
     val = Number.ensure_integer_as_string(params[:number])
     number = Number.where(value: val).first || Number.new(value: val)
     haml :'factors/get', locals: { number: number}
   end
+
 
   # Submit a number
   post '/factors/:number' do
