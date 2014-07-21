@@ -2,7 +2,7 @@
 
 require "irb"
 require "irb/completion"
-require_relative "../factors_app.rb"
+require "./factors_app.rb"
 
 set :run, false
 
