@@ -1,3 +1,7 @@
+require 'rubygems'
+require 'bundler/setup'
+Bundler.require
+
 Mongoid.load!("config/mongoid.yml")
 I18n.config.enforce_available_locales=false
 require './number'
