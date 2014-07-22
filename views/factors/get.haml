@@ -5,7 +5,7 @@
         %h5
           Factors for:
         %h1
-          = number.value
+          = number.value.to_i.to_delimited
 
         - if !number.factors?
           %p
