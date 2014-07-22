@@ -5,6 +5,8 @@ Bundler.require
 Mongoid.load!("config/mongoid.yml")
 I18n.config.enforce_available_locales=false
 require './number'
+require './lib/pari_gp'
+require './lib/delimited'
 
 class FactorsApp < Sinatra::Base
   set :server, 'thin'
