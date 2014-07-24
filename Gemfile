@@ -3,6 +3,7 @@ ruby '2.0.0'
 
 gem 'unicorn'
 gem 'sinatra'
+gem 'sinatra-contrib'
 gem 'haml'
 gem 'coffee-script'
 gem 'therubyracer'

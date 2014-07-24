@@ -1,5 +1,6 @@
 class Number
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :value,     type: String
   field :prime,     type: Boolean
