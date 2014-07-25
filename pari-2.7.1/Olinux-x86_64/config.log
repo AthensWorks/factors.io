@@ -1,0 +1,44 @@
+This file contains messages produced while configuring
+  pari-2.7.1 
+to aid debugging if Configure makes a mistake. Command line was
+  > ./Configure 
+
+/usr/bin/gcc -o linux-x86_64-ansi81705 ansi.c
+/usr/bin/gcc -o linux-x86_64-gnu81705 gnu.c
+/usr/bin/gcc -fno-strict-aliasing -o linux-x86_64-gnu81705 gnu.c
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer endian.c -o linux-x86_64-endian81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_exp2.c -o linux-x86_64-tmp81705 -lm
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_log2.c -o linux-x86_64-tmp81705 -lm
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_strftime.c -o linux-x86_64-tmp81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_getrusage.c -o linux-x86_64-tmp81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_sigaction.c -o linux-x86_64-tmp81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_TIOCGWINSZ.c -o linux-x86_64-tmp81705
+has_TIOCGWINSZ.c:10:7: warning: unused variable 'status' [-Wunused-variable]
+  int status = ioctl(0, TIOCGWINSZ, &s);
+      ^
+1 warning generated.
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_getrlimit.c -o linux-x86_64-tmp81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_stat.c -o linux-x86_64-tmp81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_vsnprintf.c -o linux-x86_64-tmp81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_waitpid.c -o linux-x86_64-tmp81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_setsid.c -o linux-x86_64-tmp81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_getenv.c -o linux-x86_64-tmp81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_isatty.c -o linux-x86_64-tmp81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_alarm.c -o linux-x86_64-tmp81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer has_dlopen.c -o linux-x86_64-tmp81705
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer -o linux-x86_64-gmpv81705 gmp_version.c -lgmp
+gmp_version.c:2:10: fatal error: 'gmp.h' file not found
+#include <gmp.h>
+         ^
+1 error generated.
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer -o linux-x86_64-gmpv81705 ansi.c -lgmp
+ld: library not found for -lgmp
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+xmkmf
+../log_cmd: line 2: xmkmf: command not found
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer -o linux-x86_64-X1181705 has_X11.c -lX11
+has_X11.c:1:10: fatal error: 'X11/Xlib.h' file not found
+#include <X11/Xlib.h>
+         ^
+1 error generated.
+/usr/bin/gcc -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer -I/usr/include -o linux-x86_64-rlv81705 rl_version.c -L/usr/lib -lreadline
