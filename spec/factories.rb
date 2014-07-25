@@ -5,6 +5,7 @@ FactoryGirl.define do
     divisors  ['1', '2', '4', '5', '8', '10', '20', '40']
     prime    false
     status   "complete"
+    factorization_duration 5.234
 
     factory :number_with_random_value do
       sequence(:value)

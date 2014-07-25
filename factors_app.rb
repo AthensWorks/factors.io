@@ -12,7 +12,6 @@ require './lib/delimited'
 
 class FactorsApp < Sinatra::Base
   register Sinatra::Namespace
-  set :server, 'thin'
 
   get '/application.js' do
     coffee :'application'
@@ -29,14 +28,12 @@ class FactorsApp < Sinatra::Base
 
   # Get a random number
   get '/random' do
-    # http://stackoverflow.com/a/21867984
     random_number = rand(0..1_000_000_000_000_000_000_000)
     redirect to("/numbers/#{random_number}")
   end
 
   get '/random-prime' do
     random_value = Number.where(prime: true).pluck(:value).sample
-
     redirect to("/numbers/#{random_value}")
   end
 
@@ -70,11 +67,12 @@ class FactorsApp < Sinatra::Base
       val = Number.ensure_integer_as_string(params[:number])
       number = Number.where(value: val).first || Number.new(value: val, status: 'incomplete')
 
-      {value:     number.value,
+      { value:     number.value,
         status:   number.status,
         factors:  number.factors,
         divisors: number.divisors,
-        prime:    number.prime
+        prime:    number.prime,
+        factorization_duration: number.factorization_duration
       }.to_json
     end
 
@@ -85,7 +83,6 @@ class FactorsApp < Sinatra::Base
 
     get '/random-prime' do
       random_value = Number.where(prime: true).pluck(:value).sample
-
       redirect redirect to("/api/numbers/#{random_value}")
     end
   end

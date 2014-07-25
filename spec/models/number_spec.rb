@@ -76,15 +76,15 @@ describe Number do
     expect(number.prime?).to be false
   end
 
-  context "can only factor up to 18 digits" do
+  context "can only factor up to 50 digits" do
     it "should allow values up to 18 digits" do
-      val = '1' * 18 # 18 digit integer
+      val = '1' * 50 # 18 digit integer
       number = FactoryGirl.build(:number, value: val)
       expect(number).to be_valid
     end
 
-    it "should limit values to no more than 18 digits" do
-      val = '1' * 19 # 19 digit integer
+    it "should limit values to no more than 51 digits" do
+      val = '1' * 51 # 51 digit integer
       number = FactoryGirl.build(:number, value: val)
       expect(number).to_not be_valid
     end

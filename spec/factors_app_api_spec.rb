@@ -17,6 +17,7 @@ describe 'Factor App API' do
     expect(parsed_result["factors"]).to  eq num.factors
     expect(parsed_result["divisors"]).to eq num.divisors
     expect(parsed_result["prime"]).to    eq num.prime
+    expect(parsed_result["factorization_duration"]).to eq num.factorization_duration
   end
 
   pending "returns json for (up to) the most recent 10 values" do
