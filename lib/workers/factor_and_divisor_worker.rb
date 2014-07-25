@@ -1,13 +1,13 @@
 require 'sidekiq'
 
-# If your client is single-threaded, we just need a single connection in our Redis connection pool
-Sidekiq.configure_client do |config|
-  # config.redis = { :namespace => 'sidekiq', :size => Integer(ENV["SIDEKIQ_WORKER_SIZE"] || 3) }
-end
+if Rails.env.production?
+  Sidekiq.configure_server do |config|
+    config.redis = { url: ENV["REDISTOGO_URL"]}
+  end
 
-# Sidekiq server is multi-threaded so our Redis connection pool size defaults to concurrency (-c)
-Sidekiq.configure_server do |config|
-  # config.redis = { :namespace => 'sidekiq' }
+  Sidekiq.configure_client do |config|
+   config.redis = { url: ENV["REDISTOGO_URL"]}
+  end
 end
 
 class FactorAndDivisorWorker
