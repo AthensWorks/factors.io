@@ -22,28 +22,28 @@ describe 'Factor App' do
     expect(last_response.body).to include('Factors for:')
   end
 
-  it "has a /factors show page" do
+  it "has a /numbers show page" do
     random_number = rand(0..1_000_000_000_000_000_000).to_s
 
-    get "/factors/#{random_number}"
+    get "/numbers/#{random_number}"
     expect(last_response).to be_ok
     expect(last_response.body).to include('Factors for:')
     expect(last_response.body).to include(random_number)
   end
 
-  it "shows factors for a specific number" do
+  it "shows factors and divisors for a specific number" do
     val = "40"
     factors = ["1", "2", "4", "5", "8", "10", "20", "40"]
     FactoryGirl.create(:number, value: val, factors: factors)
 
-    get "/factors/40"
+    get "/numbers/40"
     expect(last_response).to be_ok
     expect(last_response.body).to include('Factors for:')
     expect(last_response.body).to include('40')
 
     factors.each do |factor|
       expect(last_response.body).to include(factor)
-      expect(last_response.body).to include("/factors/#{factor}")
+      expect(last_response.body).to include("/numbers/#{factor}")
     end
   end
 

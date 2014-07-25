@@ -5,6 +5,7 @@ class Number
   field :value,     type: String
   field :prime,     type: Boolean
   field :factors,   type: Hash
+  field :factorization_duration, type: Float
   field :divisors,  type: Array
   field :status,    type: String
 
