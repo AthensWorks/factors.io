@@ -11,9 +11,10 @@
           %p
             I'm sorry, we have not factored this number.
           %p
-            %a.btn.btn-primary.btn{href: "#", id: "showSubmitForm"} Submit it?
-
+            %form.form-horizontal{id: "submit-number-form", action: "/numbers/#{number.value}", method: :post}
+              .form-group
+                .col-lg-10.col-lg-offset-2
+                  %button.btn.btn-primary{type: "submit"} Submit this number
 .row
   .col-lg-12
     = haml(:'numbers/numbers', layout: false, locals: {number: number})
-    = haml(:'numbers/submit', layout: false, locals: {number: number})
