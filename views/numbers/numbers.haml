@@ -1,14 +1,28 @@
-- if number.factors?
+- if number.has_been_factored?
   %table.table.table-striped.table-hover
     %thead
       %tr
-        %th #
-        %th Factor
+        %th
+          Factors (factored in
+          = number.factorization_duration
+          secs)
     %tbody
-    - number.factors.each_with_index do |number, index|
+    - number.factors.each_pair do |factor, exponent|
       %tr
         %td
-          = index + 1
+          %a{href: "/numbers/#{factor}"}
+            = factor.to_i.to_delimited
+          %sup
+            %a{href: "/numbers/#{exponent}"}
+              = exponent
+  %table.table.table-striped.table-hover
+    %thead
+      %tr
+        %th
+          Divisors
+    %tbody
+    - number.divisors.each do |divisor|
+      %tr
         %td
-          %a{href: "/numbers/#{number}"}
-            = number
+          %a{href: "/numbers/#{divisor}"}
+            = divisor.to_i.to_delimited

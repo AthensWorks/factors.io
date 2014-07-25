@@ -43,4 +43,8 @@ class Number
     status == "incomplete"
   end
 
+  def has_been_factored?
+    complete? && factors? && divisors? && factorization_duration?
+  end
+
 end
