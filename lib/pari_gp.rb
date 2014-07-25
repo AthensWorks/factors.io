@@ -1,6 +1,6 @@
 module PARI
   class GP
-    GP_BIN = "bin/gp"
+    GP_BIN = ENV["PARI_GP_PATH"] || "/usr/local/bin/gp"
 
     def self.factors(number)
       factors = {}

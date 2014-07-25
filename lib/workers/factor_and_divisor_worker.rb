@@ -16,7 +16,7 @@ class FactorAndDivisorWorker
   def perform(val)
     number = Number.find_or_initialize_by(value: val.to_s)
 
-    if number.incomplete?
+    if number.incomplete? || number.queued?
       number.update_attributes(status: "in-progress")
 
       with_factorization_time(number) do
