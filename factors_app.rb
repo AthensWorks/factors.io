@@ -34,10 +34,9 @@ class FactorsApp < Sinatra::Base
   end
 
   get '/random-prime' do
-    all_primes_ids = Number.where(prime: true).pluck(:_id)
-    random_id = all_primes_ids.sample
+    random_value = Number.where(prime: true).pluck(:value).sample
 
-    redirect to("/numbers/#{Number.find(random_id).value}")
+    redirect to("/numbers/#{random_value}")
   end
 
   # Show a number
@@ -74,10 +73,10 @@ class FactorsApp < Sinatra::Base
       redirect to("/api/numbers/#{random_number}")
     end
 
-    get '/random_prime' do
-      all_prime_ids = Number.where(prime: true).pluck(:_id)
-      random_id = all_prime_ids.sample
-      redirect redirect to("/api/numbers/#{Number.find(random_id).value}")
+    get '/random-prime' do
+      random_value = Number.where(prime: true).pluck(:value).sample
+
+      redirect redirect to("/api/numbers/#{random_value}")
     end
   end
 
