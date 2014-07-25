@@ -1,2 +1,2 @@
 https://github.com/heroku/heroku-buildpack-ruby.git
-https://github.com/atris/heroku-buildpack-C.git
+https://github.com/hammady/heroku-buildpack-multimake.git
