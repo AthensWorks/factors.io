@@ -40,16 +40,16 @@ class FactorsApp < Sinatra::Base
   # Show a number
   get '/numbers/:number' do
     val = Number.ensure_integer_as_string(params[:number])
-    number = Number.where(value: val).first || Number.new(value: val, status: 'incomplete')
+    number = Number.find_or_initialize_by(value: val)
     haml :'numbers/get', locals: { number: number}
   end
 
   # Submit a number
   post '/numbers/:number' do
     val = Number.ensure_integer_as_string(params[:number])
-    number = Number.where(value: val).first || Number.create(value: val, status: 'incomplete')
+    number = Number.find_or_initialize_by(value: val)
 
-    if number.status == 'incomplete'
+    if number.incomplete?
       number.status = 'queued'
       number.save
       FactorAndDivisorWorker.perform_async(number.value)
@@ -65,7 +65,7 @@ class FactorsApp < Sinatra::Base
 
     get '/numbers/:number' do
       val = Number.ensure_integer_as_string(params[:number])
-      number = Number.where(value: val).first || Number.new(value: val, status: 'incomplete')
+      number = Number.find_or_initialize_by(value: val)
 
       { value:     number.value,
         status:   number.status,

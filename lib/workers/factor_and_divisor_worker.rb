@@ -14,28 +14,21 @@ class FactorAndDivisorWorker
   include Sidekiq::Worker
 
   def perform(val)
-    puts "STARTING WORKER"
-    puts val
-    number = Number.find_by(value: val.to_s)
+    number = Number.find_or_initialize_by(value: val.to_s)
 
-    number.status = "in-progress"
-    number.save
+    if number.incomplete?
+      number.update_attributes(status: "in-progress")
 
-    puts number.inspect
+      with_factorization_time(number) do
+        number.factors = PARI::GP.factors(number.value)
+      end
 
-    with_factorization_time(number) do
-      number.factors = PARI::GP.factors(number.value)
+      number.divisors = PARI::GP.divisors(number.value)
+
+      number.prime  = number.is_a_prime?
+      number.status = "complete"
+      number.save
     end
-
-    puts number.inspect
-
-    number.divisors = PARI::GP.divisors(number.value)
-
-    puts number.inspect
-
-    number.prime  = number.is_a_prime?
-    number.status = "complete"
-    number.save
   end
 
   private
