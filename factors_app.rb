@@ -6,6 +6,7 @@ Mongoid.load!("config/mongoid.yml")
 I18n.config.enforce_available_locales=false
 require "sinatra/namespace"
 require './number'
+require './lib/workers/factor_and_divisor_worker'
 require './lib/pari_gp'
 require './lib/delimited'
 
@@ -48,7 +49,16 @@ class FactorsApp < Sinatra::Base
 
   # Submit a number
   post '/numbers/:number' do
-    haml "TODO: POST /factors/#{params[:number]}"
+    val = Number.ensure_integer_as_string(params[:number])
+    number = Number.where(value: val).first || Number.create(value: val, status: 'incomplete')
+
+    if number.status == 'incomplete'
+      number.status = 'queued'
+      number.save
+      FactorAndDivisorWorker.perform_async(number.value)
+    end
+
+    redirect to("/numbers/#{val}")
   end
 
   namespace '/api' do

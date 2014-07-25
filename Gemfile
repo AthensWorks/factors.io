@@ -9,6 +9,7 @@ gem 'coffee-script'
 gem 'therubyracer'
 
 gem 'mongoid'
+gem 'sidekiq'
 
 group :test, :development do
   gem 'rspec'

@@ -12,9 +12,14 @@ class Number
   validates_inclusion_of :status, in: ['complete', 'in-progress', 'queued', 'incomplete']
   validates_presence_of  :value, :status
   validates_format_of    :value, with: /^\d+$/
-  validates_length_of    :value, maximum: 18
+  validates_length_of    :value, maximum: 50
 
   def self.ensure_integer_as_string(value)
     value.to_i.to_s if value.present?
   end
+
+  def is_a_prime?
+    divisors.length == 2
+  end
+
 end
